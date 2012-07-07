@@ -4,6 +4,8 @@
 #include "ui/Button.h"
 #include "misc/sigslot.h"
 
+using namespace sdk;
+
 class MyMainWindow : public MainWindow, public sigslot::has_slots<>
 {
     Button * okay;

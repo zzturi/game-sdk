@@ -1,5 +1,7 @@
 #pragma once
 
+namespace sdk {
+
 template <typename T>
 class Singleton
 {
@@ -13,3 +15,5 @@ public:
 private:
     void operator=(Singleton const &) {}
 };
+
+}

@@ -1,9 +1,8 @@
 #include "Button.h"
 #include "../misc/ResourceManager.h"
-#include "../misc/DeviceScreen.h"
+#include "../misc/Common.h"
 
-#include <iostream>
-using namespace std;
+namespace sdk {
 
 Button::Button(Widget * parent, float x, float y, float width, float height)
     : Widget(parent, x, y, width, height)
@@ -57,4 +56,6 @@ void Button::update()
     m_pressed->update();
 
     Widget::update();
+}
+
 }

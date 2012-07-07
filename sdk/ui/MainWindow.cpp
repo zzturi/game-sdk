@@ -1,6 +1,8 @@
 #include "MainWindow.h"
-#include "../misc/DeviceScreen.h"
+#include "../misc/Common.h"
 #include <ClanLib/Core/System/keep_alive.h>
+
+namespace sdk {
 
 MainWindow::MainWindow()
 {
@@ -15,7 +17,7 @@ void MainWindow::setFullscreen(bool fullscreen)
 
 void MainWindow::run()
 {
-    DeviceScreen::getInstance();  // initialize rendering
+    Common::getInstance();  // initialize rendering
 
     CL_DisplayWindow window(getTitle(),
                             (int)width(),
@@ -24,14 +26,14 @@ void MainWindow::run()
 
     CL_Rect g = window.get_geometry();
 
-    DeviceScreen::getInstance().setSize(g.get_width(), g.get_height());
+    Common::getInstance().setSize(g.get_width(), g.get_height());
     setSize(g.get_width(), g.get_height());
     setWidth(g.get_width());
 
     CL_GraphicContext gc = window.get_gc();
     CL_InputContext ic = window.get_ic();
-    DeviceScreen::getInstance().setGraphicContext(&gc);
-    DeviceScreen::getInstance().setInputContext(&ic);
+    Common::getInstance().setGraphicContext(&gc);
+    Common::getInstance().setInputContext(&ic);
     setup();
 
     /*CL_Slot slotQuit = window.sig_window_close().connect(
@@ -50,7 +52,7 @@ void MainWindow::run()
         CL_KeepAlive::process();
         CL_System::sleep(1);
         dt = (int)(CL_System::get_time() - currentTime);
-        DeviceScreen::getInstance().setDt(dt);
+        Common::getInstance().setDt(dt);
     }
 }
 
@@ -71,4 +73,6 @@ void MainWindow::draw()
 void MainWindow::setSprite(Sprite * sprite)
 {
     m_sprite = sprite;
+}
+
 }

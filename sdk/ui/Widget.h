@@ -10,6 +10,8 @@
 #include <ClanLib/Core/Signals/slot.h>
 #include "../misc/sigslot.h"
 
+namespace sdk {
+
 class Widget : public Rect
 {
     Widget * m_parent;
@@ -94,3 +96,5 @@ protected:
     void enableInputEvents();
     void inputEvent(const CL_InputEvent & event, const CL_InputState &);
 };
+
+}

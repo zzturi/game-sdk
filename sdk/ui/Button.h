@@ -2,6 +2,8 @@
 
 #include "Widget.h"
 
+namespace sdk {
+
 class Button : public Widget
 {
     Sprite * m_released;
@@ -20,3 +22,5 @@ protected:
     void draw();
     void update();
 };
+
+}

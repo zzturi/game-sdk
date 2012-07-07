@@ -29,10 +29,9 @@ add_executable(example/hello
     sdk/ui/Button.h
     sdk/misc/Singleton.h
     sdk/misc/String.h
-    sdk/misc/String.cpp
-    sdk/misc/DeviceScreen.cpp
+    sdk/misc/Common.cpp
     sdk/misc/ResourceManager.h
-    sdk/misc/DeviceScreen.h
+    sdk/misc/Common.h
     sdk/misc/sigslot.h
     sdk/graphics/geometry.h
     sdk/graphics/Sprite.cpp

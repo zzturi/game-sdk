@@ -2,6 +2,8 @@
 
 #include <vector>
 
+namespace sdk {
+
 class Point2;
 
 class Rect
@@ -50,3 +52,5 @@ public:
 };
 
 typedef std::vector<Point2> Vec2;
+
+}

@@ -2,6 +2,10 @@
 
 #include "Singleton.h"
 
+namespace sdk {
+
 typedef Singleton<CL_ResourceManager> ResourceManager;
 
-#define RC (ResourceManager::getInstance())
+}
+
+#define RC (::sdk::ResourceManager::getInstance())

@@ -1,6 +1,8 @@
 #include "Widget.h"
-#include "../misc/DeviceScreen.h"
+#include "../misc/Common.h"
 #include <ClanLib/Display/2D/draw.h>
+
+namespace sdk {
 
 Widget::Widget(Widget * parent, float x, float y, float width, float height)
     : Rect(x, y, width, height)
@@ -117,7 +119,7 @@ void Widget::draw()
     /*if (!m_visible)
         return;
 
-    CL_GraphicContext * gc = DeviceScreen::getInstance().getGraphicContext();
+    CL_GraphicContext * gc = Common::getInstance().getGraphicContext();
     if (!gc)
         return;*/
 }
@@ -138,7 +140,7 @@ void Widget::update()
             m_doubleClickTimer = -1;
     }
     
-    if (this->collides(DeviceScreen::getInstance()))
+    if (this->collides(Common::getInstance()))
         draw();
 
     for (auto child = m_children.begin(); child != m_children.end(); ++child)
@@ -178,4 +180,6 @@ void Widget::inputEvent(const CL_InputEvent & event, const CL_InputState &)
     default:
         break;
     }
+}
+
 }

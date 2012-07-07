@@ -3,6 +3,8 @@
 #include "Widget.h"
 #include "../graphics/Sprite.h"
 
+namespace sdk {
+
 class MainWindow : public Widget
 {
     bool m_fullscreen;
@@ -19,3 +21,5 @@ public:
 protected:
     virtual void draw();
 };
+
+}

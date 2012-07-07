@@ -1,5 +1,7 @@
 #include "geometry.h"
 
+namespace sdk {
+
 Rect::Rect(float x, float y, float width, float height)
 {
     m_x = x;
@@ -155,4 +157,6 @@ void Point2::setX(float x)
 void Point2::setY(float y)
 {
     m_y = y;
+}
+
 }

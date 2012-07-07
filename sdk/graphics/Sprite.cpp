@@ -1,6 +1,8 @@
 #include "Sprite.h"
-#include "../misc/DeviceScreen.h"
+#include "../misc/Common.h"
 #include "../misc/ResourceManager.h"
+
+namespace sdk {
 
 Sprite::Sprite(const CL_StringRef &fullname)
     : CL_Sprite(*GC, fullname, &RC)
@@ -18,4 +20,6 @@ void Sprite::update()
     }
 
     CL_Sprite::update();
+}
+
 }

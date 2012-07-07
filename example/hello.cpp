@@ -1,10 +1,12 @@
 #include "MyMainWindow.h"
 #include "misc/ResourceManager.h"
-#include "misc/DeviceScreen.h"
+#include "misc/Common.h"
 
 #include <clocale>
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
+
+using namespace sdk;
 
 class App
 {
@@ -12,7 +14,7 @@ public:
     static int main(const std::vector<CL_String> & args)
     {
         std::setlocale(LC_ALL, "");
-        DeviceScreen::getInstance();
+        Common::getInstance();
         //try {
             ResourceManager::getInstance() = CL_ResourceManager("resources.xml");
 
