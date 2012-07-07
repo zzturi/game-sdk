@@ -2,6 +2,7 @@
 
 #include "Singleton.h"
 #include "../graphics/geometry.h"
+#include "../misc/String.h"
 
 #include <ClanLib/display.h>
 //#include <ClanLib/gl.h>
@@ -32,6 +33,7 @@ public:
     CL_InputContext * getInputContext();
     void setDt(int dt);
     int getDt();
+    String getExecDir();
 };
 
 typedef Singleton<ScreenClass> DeviceScreen;

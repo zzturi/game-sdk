@@ -1,5 +1,9 @@
 #include "DeviceScreen.h"
-#include <iostream>
+
+extern "C" {
+    #include <unistd.h>
+    #include <libgen.h>
+}
 
 ScreenClass::ScreenClass()
 {
@@ -10,6 +14,11 @@ ScreenClass::ScreenClass()
     m_ic = 0;
     m_gc = 0;
     m_dt = 0;
+    
+    String dirname(getExecDir());
+    if (chdir(dirname.c_str()) != 0) {
+        throw CL_Exception("Cannot change directory to ``" + dirname + "''");
+    }
 }
 
 ScreenClass::~ScreenClass()
@@ -48,4 +57,18 @@ void ScreenClass::setDt(int dt)
 int ScreenClass::getDt()
 {
     return m_dt;
+}
+
+String ScreenClass::getExecDir()
+{
+    ssize_t len = -1;
+    char buf[1024];
+    char * result;
+    if ((len = readlink("/proc/self/exe", buf, sizeof(buf)-1)) != -1) {
+        buf[len] = '\0';
+        result = dirname(buf);
+    } else {
+        return String(".");
+    }
+    return String(result);
 }

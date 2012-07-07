@@ -2,7 +2,7 @@
 
 #include "ui/MainWindow.h"
 #include "ui/Button.h"
-#include "libs/sigslot.h"
+#include "misc/sigslot.h"
 
 class MyMainWindow : public MainWindow, public sigslot::has_slots<>
 {

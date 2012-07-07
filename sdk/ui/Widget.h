@@ -3,12 +3,12 @@
 #include <vector>
 #include "../graphics/geometry.h"
 #include "../graphics/Sprite.h"
-#include "../libs/String.h"
+#include "../misc/String.h"
 
 #include <ClanLib/Display/Window/input_event.h>
 #include <ClanLib/Display/Window/input_state.h>
 #include <ClanLib/Core/Signals/slot.h>
-#include "../libs/sigslot.h"
+#include "../misc/sigslot.h"
 
 class Widget : public Rect
 {

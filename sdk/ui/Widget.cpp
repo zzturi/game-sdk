@@ -1,5 +1,5 @@
 #include "Widget.h"
-#include "../libs/DeviceScreen.h"
+#include "../misc/DeviceScreen.h"
 #include <ClanLib/Display/2D/draw.h>
 
 Widget::Widget(Widget * parent, float x, float y, float width, float height)

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(hello)
 
-add_definitions(-std=c++0x -g)
+add_definitions(-std=c++0x -Isdk -g -Wall)
 
 #set(CMAKE_MODULE_PATH  ${PROJECT_SOURCE_DIR}/cmake-extensions/ )
 find_package(PkgConfig)
@@ -17,29 +17,29 @@ include_directories(
     ${CLANLIB_INCLUDE_DIRS}
 )
 
-add_executable(hello
-    hello.cpp
-    MyMainWindow.cpp
-    MyMainWindow.h
-    ui/Widget.cpp
-    ui/MainWindow.cpp
-    ui/Button.cpp
-    ui/MainWindow.h
-    ui/Widget.h
-    ui/Button.h
-    libs/Singleton.h
-    libs/String.h
-    libs/String.cpp
-    libs/DeviceScreen.cpp
-    libs/ResourceManager.h
-    libs/DeviceScreen.h
-    libs/sigslot.h
-    graphics/geometry.h
-    graphics/Sprite.cpp
-    graphics/Sprite.h
-    graphics/geometry.cpp
+add_executable(example/hello
+    example/hello.cpp
+    example/MyMainWindow.cpp
+    example/MyMainWindow.h
+    sdk/ui/Widget.cpp
+    sdk/ui/MainWindow.cpp
+    sdk/ui/Button.cpp
+    sdk/ui/MainWindow.h
+    sdk/ui/Widget.h
+    sdk/ui/Button.h
+    sdk/misc/Singleton.h
+    sdk/misc/String.h
+    sdk/misc/String.cpp
+    sdk/misc/DeviceScreen.cpp
+    sdk/misc/ResourceManager.h
+    sdk/misc/DeviceScreen.h
+    sdk/misc/sigslot.h
+    sdk/graphics/geometry.h
+    sdk/graphics/Sprite.cpp
+    sdk/graphics/Sprite.h
+    sdk/graphics/geometry.cpp
 )
 
-target_link_libraries(hello
+target_link_libraries(example/hello
     ${CLANLIB_LIBRARIES}
 )

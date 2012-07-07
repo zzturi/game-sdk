@@ -1,5 +1,5 @@
 #include "MainWindow.h"
-#include "../libs/DeviceScreen.h"
+#include "../misc/DeviceScreen.h"
 #include <ClanLib/Core/System/keep_alive.h>
 
 MainWindow::MainWindow()

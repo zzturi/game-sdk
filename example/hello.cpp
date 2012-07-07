@@ -1,5 +1,6 @@
 #include "MyMainWindow.h"
-#include "libs/ResourceManager.h"
+#include "misc/ResourceManager.h"
+#include "misc/DeviceScreen.h"
 
 #include <clocale>
 #include <ClanLib/core.h>
@@ -11,6 +12,7 @@ public:
     static int main(const std::vector<CL_String> & args)
     {
         std::setlocale(LC_ALL, "");
+        DeviceScreen::getInstance();
         //try {
             ResourceManager::getInstance() = CL_ResourceManager("resources.xml");
 

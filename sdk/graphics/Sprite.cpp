@@ -1,6 +1,6 @@
 #include "Sprite.h"
-#include "../libs/DeviceScreen.h"
-#include "../libs/ResourceManager.h"
+#include "../misc/DeviceScreen.h"
+#include "../misc/ResourceManager.h"
 
 Sprite::Sprite(const CL_StringRef &fullname)
     : CL_Sprite(*GC, fullname, &RC)

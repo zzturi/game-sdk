@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rm -rfv CMakeCache.txt *.cmake Makefile hello CMakeFiles
+rm -rfv CMakeCache.txt *.cmake Makefile CMakeFiles example/hello

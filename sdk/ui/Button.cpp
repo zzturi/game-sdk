@@ -1,6 +1,6 @@
 #include "Button.h"
-#include "../libs/ResourceManager.h"
-#include "../libs/DeviceScreen.h"
+#include "../misc/ResourceManager.h"
+#include "../misc/DeviceScreen.h"
 
 #include <iostream>
 using namespace std;
