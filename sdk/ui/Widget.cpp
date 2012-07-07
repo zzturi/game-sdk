@@ -2,7 +2,12 @@
 #include "../misc/Common.h"
 #include <ClanLib/Display/2D/draw.h>
 
+#include <iostream>
+using namespace std;
+
 namespace sdk {
+
+Widget * Widget::m_selectedWidget = 0;
 
 Widget::Widget(Widget * parent, float x, float y, float width, float height)
     : Rect(x, y, width, height)
@@ -24,6 +29,8 @@ Widget::Widget(Widget * parent, float x, float y, float width, float height)
     m_state = Released;
 
     m_doubleClickTimer = -1;
+
+    m_selectable = false;
 }
 
 Widget::~Widget()
@@ -109,6 +116,11 @@ void Widget::setViewPort(float x, float y, float width, float height)
     m_viewPort = Rect(x, y, width, height);
 }
 
+void Widget::setSelectable(bool selectable)
+{
+    m_selectable = selectable;
+}
+
 void Widget::setViewPort(Rect & rect)
 {
     m_viewPort = rect;
@@ -126,7 +138,8 @@ void Widget::draw()
 
 void Widget::update()
 {
-    if (m_state != Pressed) {
+
+    if (m_selectable && m_state != Pressed) {
         if (this->collides(MOUSE_X, MOUSE_Y))
             m_state = RollOver;
         else
@@ -149,8 +162,15 @@ void Widget::update()
 
 void Widget::enableInputEvents()
 {
-    slotDown = MOUSE.sig_key_down().connect(this, &Widget::inputEvent);
-    slotUp = MOUSE.sig_key_up().connect(this, &Widget::inputEvent);
+    m_slotMouseDown = MOUSE.sig_key_down().connect(this, &Widget::inputEvent);
+    m_slotMouseUp = MOUSE.sig_key_up().connect(this, &Widget::inputEvent);
+
+    if (IC->get_joystick_count() > 0) {
+        m_slotAxisMove = JOYSTICK.sig_axis_move().connect(
+            this,
+            &Widget::inputEvent
+        );
+    }
 }
 
 void Widget::inputEvent(const CL_InputEvent & event, const CL_InputState &)
@@ -177,9 +197,57 @@ void Widget::inputEvent(const CL_InputEvent & event, const CL_InputState &)
         }
         onRelease.emit();
         break;
+    case CL_InputEvent::axis_moved:
+        if (m_state != RollOver || !m_selectable)
+            break;
+        switch (event.id) {
+        case 0:  // horizontal move
+            if (event.axis_pos < 0) {
+                cout << "left" << endl;
+                selectPreviousWidget(
+                    m_layout == Horizontal || m_layout == Float
+                    ? this : m_parent);
+            } else if (event.axis_pos > 0) {
+                cout << "right" << endl;
+                selectNextWidget(
+                    m_layout == Horizontal || m_layout == Float
+                    ? this : m_parent);
+            }
+            break;
+        case 1:  // vertical move
+            if (event.axis_pos < 0) {
+                cout << "up" << endl;
+                selectPreviousWidget(
+                    m_layout == Vertical || m_layout == Float
+                    ? this : m_parent);
+            } else if (event.axis_pos > 0) {
+                cout << "down" << endl;
+                selectNextWidget(
+                    m_layout == Vertical || m_layout == Float
+                    ? this : m_parent);
+            }
+            break;
+        default:
+            break;
+        }
     default:
         break;
     }
+}
+
+void Widget::selectPreviousWidget(Widget * parent)
+{
+}
+
+void Widget::selectNextWidget(Widget * parent)
+{
+}
+
+void Widget::setState(InputState state)
+{
+    m_state = state;
+    if (m_selectable && state == RollOver)
+        m_selectedWidget = this;
 }
 
 }

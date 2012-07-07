@@ -48,3 +48,4 @@ typedef Singleton<CommonClass> Common;
 #define MOUSE (IC->get_mouse())
 #define MOUSE_X (IC->get_mouse().get_x())
 #define MOUSE_Y (IC->get_mouse().get_y())
+#define JOYSTICK (IC->get_joystick())

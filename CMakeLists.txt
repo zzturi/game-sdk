@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(hello)
 
-add_definitions(-std=c++0x -Isdk -g -Wall)
+add_definitions(-std=c++0x -Isdk -O0 -g -Wall)
 
 #set(CMAKE_MODULE_PATH  ${PROJECT_SOURCE_DIR}/cmake-extensions/ )
 find_package(PkgConfig)

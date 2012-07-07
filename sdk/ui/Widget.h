@@ -36,11 +36,16 @@ class Widget : public Rect
 
     Rect m_viewPort;
 
+    bool m_selectable;
+
     String m_title;
 
-    CL_Slot slotUp;
-    CL_Slot slotDown;
+    CL_Slot m_slotMouseUp;
+    CL_Slot m_slotMouseDown;
+    CL_Slot m_slotAxisMove;
     int m_doubleClickTimer;
+
+    static Widget * m_selectedWidget;
 
 public:
     Widget(Widget * parent = 0,
@@ -77,12 +82,17 @@ public:
     void setViewPort(float x, float y, float width, float height);
     void setViewPort(Rect & rect);
 
+    void setSelectable(bool selectable = true);
+    void selectPreviousWidget(Widget * parent);
+    void selectNextWidget(Widget * parent);
+
     enum InputState
     {
         Released,
         RollOver,
         Pressed
     } m_state;
+    void setState(InputState state);
 
     // slots
     sigslot::signal0<> onPress;

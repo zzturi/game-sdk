@@ -10,6 +10,7 @@ Button::Button(Widget * parent, float x, float y, float width, float height)
     m_released = new Sprite("menu/button/released");
     m_rollOver = new Sprite("menu/button/roll_over");
     m_pressed = new Sprite("menu/button/pressed");
+    setSelectable();
     enableInputEvents();
 }
 
