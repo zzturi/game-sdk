@@ -1,3 +1,7 @@
 This software licensed under the terms of BSD-2 (read COPYING for details).
 
+Used libraries:
+    ClanLib (zlib license) http://clanlib.org/
+    sigslot (public domain) http://sigslot.sourceforge.net
+
 Type ``./debug.sh'' to run an example program.
