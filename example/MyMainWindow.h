@@ -12,6 +12,8 @@ class MyMainWindow : public MainWindow, public sigslot::has_slots<>
     Button * button2;
     Button * button3;
     Button * button4;
+    SubWindow * window1;
+    SubWindow * window2;
 
 public:
     MyMainWindow();

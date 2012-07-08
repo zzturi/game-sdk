@@ -4,10 +4,28 @@
 
 namespace sdk {
 
+std::map<String, SubWindow *> MainWindow::m_subWindows;
+MainWindow * MainWindow::instance = 0;
+
 MainWindow::MainWindow()
 {
+    instance = this;
     m_fullscreen = false;
     m_sprite = 0;
+    m_currentSubWindow = 0;
+}
+
+MainWindow::~MainWindow()
+{
+    for (auto it = m_subWindows.begin(); it != m_subWindows.end(); ++it)
+        delete it->second;
+
+    m_subWindows.clear();
+}
+
+MainWindow * MainWindow::getInstance()
+{
+    return instance;
 }
 
 void MainWindow::setFullscreen(bool fullscreen)
@@ -67,12 +85,31 @@ void MainWindow::draw()
     else
         m_sprite->draw(*GC, x(), y());
 
-    Widget::draw();
+    //Widget::draw();
+    //m_currentSubWindow->draw();
+}
+
+void MainWindow::update()
+{
+    Widget::update();
+    m_currentSubWindow->update();
 }
 
 void MainWindow::setSprite(Sprite * sprite)
 {
     m_sprite = sprite;
+}
+
+void MainWindow::addSubWindow(const char * name, SubWindow * window)
+{
+    m_subWindows[name] = window;
+    if (!m_currentSubWindow)
+        m_currentSubWindow = window;
+}
+
+void MainWindow::switchSubWindow(const char * name)
+{
+    m_currentSubWindow = m_subWindows[name];
 }
 
 }

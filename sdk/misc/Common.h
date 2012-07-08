@@ -49,3 +49,5 @@ typedef Singleton<CommonClass> Common;
 #define MOUSE_X (IC->get_mouse().get_x())
 #define MOUSE_Y (IC->get_mouse().get_y())
 #define JOYSTICK (IC->get_joystick())
+#define SCREEN_WIDTH (::sdk::Common::getInstance().width())
+#define SCREEN_HEIGHT (::sdk::Common::getInstance().height())

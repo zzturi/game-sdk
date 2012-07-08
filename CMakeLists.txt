@@ -22,10 +22,12 @@ add_executable(example/hello
     example/MyMainWindow.cpp
     example/MyMainWindow.h
     sdk/ui/Widget.cpp
+    sdk/ui/SubWindow.cpp
     sdk/ui/MainWindow.cpp
     sdk/ui/Button.cpp
     sdk/ui/MainWindow.h
     sdk/ui/Widget.h
+    sdk/ui/SubWindow.h
     sdk/ui/Button.h
     sdk/misc/Singleton.h
     sdk/misc/String.h

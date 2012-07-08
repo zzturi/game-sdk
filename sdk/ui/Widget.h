@@ -45,8 +45,6 @@ class Widget : public Rect
     CL_Slot m_slotAxisMove;
     int m_doubleClickTimer;
 
-    static Widget * m_selectedWidget;
-
 public:
     Widget(Widget * parent = 0,
            float x = 0.f,
@@ -83,8 +81,6 @@ public:
     void setViewPort(Rect & rect);
 
     void setSelectable(bool selectable = true);
-    void selectPreviousWidget(Widget * parent);
-    void selectNextWidget(Widget * parent);
 
     enum InputState
     {
@@ -100,11 +96,11 @@ public:
     sigslot::signal0<> onClick;
     sigslot::signal0<> onDoubleClick;
 
+    virtual void update();
 protected:
     virtual void draw();
-    virtual void update();
     void enableInputEvents();
-    void inputEvent(const CL_InputEvent & event, const CL_InputState &);
+    virtual void inputEvent(const CL_InputEvent & event, const CL_InputState &);
 };
 
 }

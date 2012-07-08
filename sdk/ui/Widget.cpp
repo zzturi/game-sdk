@@ -2,12 +2,7 @@
 #include "../misc/Common.h"
 #include <ClanLib/Display/2D/draw.h>
 
-#include <iostream>
-using namespace std;
-
 namespace sdk {
-
-Widget * Widget::m_selectedWidget = 0;
 
 Widget::Widget(Widget * parent, float x, float y, float width, float height)
     : Rect(x, y, width, height)
@@ -197,57 +192,16 @@ void Widget::inputEvent(const CL_InputEvent & event, const CL_InputState &)
         }
         onRelease.emit();
         break;
-    case CL_InputEvent::axis_moved:
-        if (m_state != RollOver || !m_selectable)
-            break;
-        switch (event.id) {
-        case 0:  // horizontal move
-            if (event.axis_pos < 0) {
-                cout << "left" << endl;
-                selectPreviousWidget(
-                    m_layout == Horizontal || m_layout == Float
-                    ? this : m_parent);
-            } else if (event.axis_pos > 0) {
-                cout << "right" << endl;
-                selectNextWidget(
-                    m_layout == Horizontal || m_layout == Float
-                    ? this : m_parent);
-            }
-            break;
-        case 1:  // vertical move
-            if (event.axis_pos < 0) {
-                cout << "up" << endl;
-                selectPreviousWidget(
-                    m_layout == Vertical || m_layout == Float
-                    ? this : m_parent);
-            } else if (event.axis_pos > 0) {
-                cout << "down" << endl;
-                selectNextWidget(
-                    m_layout == Vertical || m_layout == Float
-                    ? this : m_parent);
-            }
-            break;
-        default:
-            break;
-        }
     default:
         break;
     }
 }
 
-void Widget::selectPreviousWidget(Widget * parent)
-{
-}
-
-void Widget::selectNextWidget(Widget * parent)
-{
-}
-
 void Widget::setState(InputState state)
 {
     m_state = state;
-    if (m_selectable && state == RollOver)
-        m_selectedWidget = this;
+    //if (m_selectable && state == RollOver)
+    //    m_selectedWidget = this;
 }
 
 }
