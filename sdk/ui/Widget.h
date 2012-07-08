@@ -53,7 +53,7 @@ public:
            float height = 0.f);
     virtual ~Widget();
 
-    void addWidget(Widget * widget, bool pushBack = true);
+    virtual void addWidget(Widget * widget, bool pushBack = true);
 
     void setLayout(LayoutType layout);
 

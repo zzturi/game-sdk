@@ -38,14 +38,18 @@ void MyMainWindow::setup()
 
 void MyMainWindow::on_Button1_doubleClick()
 {
+    lock();
     cout << "onDoubleClick (button1)" << endl;
+    unlock();
 }
 
 void MyMainWindow::on_Button2_doubleClick()
 {
+    lock();
     cout << "onDoubleClick (button2)" << endl;
     switchSubWindow("Window 2");
 
     //MOUSE.set_position(button3->x() + button3->width()/2,
     //                   button3->y() + button3->height()/2);
+    unlock();
 }

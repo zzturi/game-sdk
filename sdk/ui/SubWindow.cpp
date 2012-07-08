@@ -14,6 +14,7 @@ SubWindow::SubWindow(Widget * parent,
     : Widget(parent, x, y, width, height)
 {
     enableInputEvents();
+    m_selectedWidget = 0;
 }
 
 SubWindow::SubWindow(Widget * parent)
@@ -21,6 +22,7 @@ SubWindow::SubWindow(Widget * parent)
 {
     setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
     enableInputEvents();
+    m_selectedWidget = 0;
 }
 
 SubWindow::~SubWindow()
@@ -29,7 +31,6 @@ SubWindow::~SubWindow()
 
 void SubWindow::inputEvent(const CL_InputEvent & event, const CL_InputState &)
 {
-    cout << "SubWindow::inputEvent" << endl;
     switch (event.type) {
     case CL_InputEvent::axis_moved:
         //if (m_state != RollOver || !m_selectable)
@@ -67,6 +68,12 @@ void SubWindow::selectPreviousWidget()
 
 void SubWindow::selectNextWidget()
 {
+}
+
+void SubWindow::addWidget(Widget * widget, bool pushBack)
+{
+    Widget::addWidget(widget, pushBack);
+    m_selectableWidgets.push_back(widget);
 }
 
 }
